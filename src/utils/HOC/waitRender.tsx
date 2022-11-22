@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { ComponentType, FC, useEffect, useState } from 'react';
 
 const waitList: (() => void)[] = []; // 等待队列，放的是一个一个激活渲染的方法
 let isRender: boolean = false; // 控制渲染条件
@@ -10,7 +10,7 @@ const waitRender = () => {
   }, 300);
 };
 const HOC =
-  (Component: any): FC<any> =>
+  <P, R>(Component: ComponentType<P>): FC<P & R> =>
   (props) => {
     const [show, setShow] = useState<boolean>(false);
     useEffect(() => {
@@ -20,6 +20,6 @@ const HOC =
         isRender = true;
       }
     }, []);
-    return show ? <Component waitRender={waitRender} {...props} /> : <div>加载中</div>;
+    return show ? <Component waitRender={waitRender} {...(props as P & R)} /> : <div>加载中</div>;
   };
 export default HOC;

@@ -2,8 +2,11 @@ import { FC, useEffect } from 'react';
 import React from './assets/react.svg';
 import './App.css';
 import HOC from './utils/HOC/waitRender';
-
-const Child: FC<{ name: string; waitRender: () => void }> = ({ name, waitRender }) => {
+interface ChildProps {
+  name: string;
+  waitRender: () => void;
+}
+const Child: FC<ChildProps> = ({ name, waitRender }) => {
   useEffect(() => {
     waitRender();
   }, []);
@@ -14,7 +17,7 @@ const Child: FC<{ name: string; waitRender: () => void }> = ({ name, waitRender 
     </div>
   );
 };
-const Item = HOC(Child);
+const Item = HOC<ChildProps, { name: string }>(Child);
 function App() {
   const list = [{ name: '图片1' }, { name: '图片2' }, { name: '图片3' }];
   return (
