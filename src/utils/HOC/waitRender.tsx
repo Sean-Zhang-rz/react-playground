@@ -10,7 +10,7 @@ const waitRender = () => {
   }, 300);
 };
 const HOC =
-  (Component: FC<{ waitRender: () => void }>): FC =>
+  (Component: any): FC<any> =>
   (props) => {
     const [show, setShow] = useState<boolean>(false);
     useEffect(() => {
