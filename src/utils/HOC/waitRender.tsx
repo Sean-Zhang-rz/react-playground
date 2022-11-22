@@ -10,7 +10,7 @@ const waitRender = () => {
   }, 300);
 };
 const HOC =
-  (Component): FC =>
+  (Component: FC<{ waitRender: () => void }>): FC =>
   (props) => {
     const [show, setShow] = useState<boolean>(false);
     useEffect(() => {
@@ -22,3 +22,4 @@ const HOC =
     }, []);
     return show ? <Component waitRender={waitRender} {...props} /> : <div>加载中</div>;
   };
+export default HOC;
