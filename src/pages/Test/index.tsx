@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { add } from "../../utils"
 
-const Test = () => {
+const Test: FC = () => {
   console.log(add(1, 2));
 
   return (
