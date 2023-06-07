@@ -39,16 +39,15 @@ class App extends Component {
       count: 0
     }
   }
-  render() {
-    return <div onClick={() => {
-      setTimeout(() => {
-        this.setState({
-          count: 1
-        })
-        console.log(this.state.count);
-
-      }, 0)
-    }} >1</div>
+  click = () => {
+    console.log('111');
   }
+  render() {
+    return <div onClick={this.click}>点击我</div>
+  }
+}
+App.prototype.click = () => {
+  console.log(22222);
+
 }
 export default App;
